@@ -1,0 +1,341 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --background: #f3ebdd;
+  --surface: #faf6ee;
+  --primary: #26384a;
+  --accent: #b9683e;
+  --text: #303b43;
+  --muted: #928674;
+  --border: #d9d0c1;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Estrutura principal */
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 70px 20px;
+}
+
+.todo-card {
+  width: 100%;
+  max-width: 680px;
+  padding: 38px;
+  background: var(--surface);
+  border: 1px solid #c9bda8;
+  box-shadow: 5px 5px 0 #dfd4c3;
+}
+
+/* Cabeçalho */
+
+.app-header {
+  margin-bottom: 32px;
+  padding-bottom: 22px;
+  border-bottom: 2px solid var(--primary);
+}
+
+.app-header::before {
+  content: "DAILY PLANNER  /  ORGANIZAÇÃO PESSOAL";
+  display: block;
+  margin-bottom: 24px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.app-header h1 {
+  margin: 0 0 8px;
+  color: var(--primary);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.app-header p {
+  margin: 0;
+  color: var(--muted);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-style: italic;
+}
+
+/* Indicadores */
+
+.task-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 30px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.task-stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-left: 18px;
+  border-left: 1px solid var(--border);
+}
+
+.task-stats div:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.task-stats span {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.task-stats strong {
+  color: var(--primary);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* Formulário */
+
+.task-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.task-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 15px;
+  color: var(--primary);
+  background: transparent;
+  border: 1px solid #c9bda8;
+  border-radius: 2px;
+  outline: none;
+}
+
+.task-form input::placeholder {
+  color: #a69b89;
+}
+
+.task-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 3px 3px 0 #e9d7c7;
+}
+
+.task-form button {
+  padding: 0 20px;
+  color: #fffaf2;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+
+.task-form button:hover {
+  background: #96502f;
+}
+
+/* Filtros */
+
+.task-filters {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.task-filters button {
+  position: relative;
+  padding: 10px 0 13px;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.task-filters button:hover {
+  color: var(--primary);
+}
+
+.task-filters button.active {
+  color: var(--accent);
+}
+
+.task-filters button.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+}
+
+/* Lista de tarefas */
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 17px 5px;
+  border-bottom: 1px solid var(--border);
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.task-content input {
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.task-content span {
+  color: var(--primary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.task-item.completed .task-content span {
+  color: #a69b89;
+  text-decoration: line-through;
+}
+
+.delete-button {
+  padding: 7px 9px;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.delete-button:hover {
+  background: #f0e2d5;
+  border-color: #dfc6b4;
+}
+
+.empty-state {
+  padding: 28px 0;
+  color: var(--muted);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 15px;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Responsividade */
+
+@media (max-width: 480px) {
+  .app-container {
+    padding: 25px 12px;
+  }
+
+  .todo-card {
+    padding: 25px 17px;
+    box-shadow: 3px 3px 0 #dfd4c3;
+  }
+
+  .app-header h1 {
+    font-size: 31px;
+  }
+
+  .app-header::before {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+  }
+
+  .task-stats div {
+    padding-left: 10px;
+  }
+
+  .task-stats span {
+    font-size: 9px;
+    letter-spacing: 0.8px;
+  }
+
+  .task-stats strong {
+    font-size: 25px;
+  }
+
+  .task-form {
+    flex-direction: column;
+  }
+
+  .task-form button {
+    padding: 13px;
+  }
+
+  .task-filters {
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .task-filters button {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+  }
+
+  .task-item {
+    padding: 15px 2px;
+  }
+
+  .task-content {
+    gap: 9px;
+  }
+
+  .task-content span {
+    font-size: 13px;
+  }
+}
